@@ -4,6 +4,7 @@
     { "slug": "ink", "label": "水墨" },
     { "slug": "watercolor", "label": "水彩" },
     { "slug": "acrylic", "label": "壓克力" },
-    { "slug": "digital", "label": "電繪" }
+    { "slug": "digital", "label": "電繪" },
+    { "slug": "sketch", "label": "素描" }
   ]
 }

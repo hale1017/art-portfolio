@@ -167,7 +167,14 @@ export async function initBillboard() {
         return;
       }
       s.video.currentTime = 0;
-      s.video.play().catch(() => showPlayFallback(s, s.video));
+      s.video
+        .play()
+        .then(() => s.el.querySelector('.play-fallback')?.remove())
+        .catch(() => {
+          // 只有在真的可見時才顯示播放鍵;
+          // 被捲出畫面的 pause() 中斷 play() 不算失敗。
+          if (visible) showPlayFallback(s, s.video);
+        });
     } else if (slides.length > 1 && !REDUCED) {
       clearTimer();
       timer = setTimeout(() => show(cur + 1), IMAGE_SLIDE_MS);

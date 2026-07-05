@@ -46,6 +46,15 @@
       "featured": true
     },
     {
+      "title": "手的習作",
+      "category": "sketch",
+      "year": 2025,
+      "size": "A4",
+      "description": "石墨鉛筆,連續三十天的手部速寫之一。",
+      "image": "/images/uploads/work-sketch-1.svg",
+      "featured": false
+    },
+    {
       "title": "墨竹",
       "category": "ink",
       "year": 2024,
