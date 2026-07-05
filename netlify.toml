@@ -1,0 +1,17 @@
+# 純靜態網站:沒有 build command,發布資料夾就是 repo 根目錄。
+# CMS 存檔(= git push)後,Netlify 幾十秒內直接上線。
+
+[build]
+  publish = "."
+
+# 內容資料:每次都重新驗證,後台改完馬上看得到
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 上傳的圖片/影片:快取 7 天(避免同名覆蓋後被舊快取卡住太久)
+[[headers]]
+  for = "/images/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

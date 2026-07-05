@@ -1,0 +1,52 @@
+{
+  "dolls": [
+    {
+      "name": "小裁縫",
+      "series": "occupation",
+      "images": ["/images/uploads/doll-tailor-1.svg", "/images/uploads/doll-tailor-2.svg"],
+      "description": "圍裙、針插手環與捲尺小配件,向每一位手作人致敬。",
+      "year": 2026,
+      "featured": true
+    },
+    {
+      "name": "小護士",
+      "series": "occupation",
+      "images": ["/images/uploads/doll-nurse-1.svg", "/images/uploads/doll-nurse-2.svg"],
+      "description": "經典白帽與圍裙式制服,附迷你藥箱。",
+      "year": 2026,
+      "featured": true
+    },
+    {
+      "name": "小畫家",
+      "series": "occupation",
+      "images": ["/images/uploads/doll-painter-1.svg"],
+      "description": "沾了顏料的工作圍裙與畫板背袋。",
+      "year": 2025,
+      "featured": false
+    },
+    {
+      "name": "烘培師",
+      "series": "occupation",
+      "images": ["/images/uploads/doll-baker-1.svg"],
+      "description": "高帽與雙排釦廚師服,口袋裡有小小擀麵棍。",
+      "year": 2025,
+      "featured": false
+    },
+    {
+      "name": "小海豹喫茶",
+      "series": "animal",
+      "images": ["/images/uploads/doll-seal-1.svg", "/images/uploads/doll-seal-2.svg"],
+      "description": "海豹連帽斗篷搭配喫茶店圍裙,附托盤小物。",
+      "year": 2026,
+      "featured": true
+    },
+    {
+      "name": "小蘋狗",
+      "series": "animal",
+      "images": ["/images/uploads/doll-appledog-1.svg"],
+      "description": "蘋果紅的狗狗連身裝,帽子上有蒂頭與葉子。",
+      "year": 2025,
+      "featured": false
+    }
+  ]
+}

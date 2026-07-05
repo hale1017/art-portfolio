@@ -1,0 +1,227 @@
+# ============================================================
+# 網站後台設定(Sveltia CMS / Decap CMS 相容)
+# 所有欄位標籤與提示都是繁體中文 —— 美術人看到的就是這些字。
+# ============================================================
+
+backend:
+  name: github
+  repo: OWNER/art-portfolio # ← 部署時改成實際的「GitHub帳號/倉庫名」
+  branch: main
+  # 部署在 Netlify 並安裝好 OAuth provider 後,這裡不需要其他設定。
+
+# 本機開發測試用(正式站不受影響):在專案資料夾執行 npx decap-server
+local_backend: true
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# 關掉編輯器的即時預覽窗(對純資料表單沒有幫助,反而讓畫面變複雜)
+editor:
+  preview: false
+
+collections:
+  # ---------- 作品集 ----------
+  - name: works
+    label: 作品集
+    icon: palette
+    files:
+      - name: works
+        label: 作品列表
+        file: data/works.json
+        fields:
+          - name: works
+            label: 作品
+            label_singular: 作品
+            widget: list
+            summary: "{{fields.title}}({{fields.year}})"
+            hint: 拖曳可以調整順序;網站上會照這裡的順序顯示。
+            fields:
+              - { name: title, label: 作品名稱, widget: string }
+              - name: category
+                label: 媒材分類
+                widget: relation
+                collection: categories
+                file: categories
+                search_fields: ["categories.*.label"]
+                value_field: "categories.*.slug"
+                display_fields: ["categories.*.label"]
+                hint: 找不到想要的分類?先到左邊的「媒材分類」新增一筆,再回來選。
+              - { name: year, label: 年份, widget: number, value_type: int }
+              - { name: size, label: 尺寸, widget: string, required: false, hint: "例:70 × 45 cm、A4、4000 × 3000 px" }
+              - { name: description, label: 作品說明, widget: text, required: false }
+              - { name: image, label: 作品圖片, widget: image, hint: 建議寬度 2000 像素以內,檔案 5MB 以下。 }
+              - { name: featured, label: 放到首頁精選, widget: boolean, default: false }
+
+  # ---------- 娃衣作品 ----------
+  - name: dolls
+    label: 娃衣作品
+    icon: styler
+    files:
+      - name: dolls
+        label: 娃衣列表
+        file: data/dolls.json
+        fields:
+          - name: dolls
+            label: 娃衣
+            label_singular: 娃衣
+            widget: list
+            summary: "{{fields.name}}"
+            hint: 拖曳可以調整順序;網站上會照這裡的順序顯示。
+            fields:
+              - { name: name, label: 成品名稱, widget: string, hint: "例:小海豹喫茶、烘培師" }
+              - name: series
+                label: 系列
+                widget: select
+                options:
+                  - { label: 職業系列, value: occupation }
+                  - { label: 動物系列, value: animal }
+              - name: images
+                label: 照片(第一張會當封面)
+                label_singular: 照片
+                widget: list
+                field: { name: image, label: 照片, widget: image }
+              - { name: description, label: 介紹, widget: text, required: false }
+              - { name: year, label: 年份, widget: number, value_type: int, required: false }
+              - { name: featured, label: 放到首頁精選, widget: boolean, default: false }
+
+  # ---------- 材料包 ----------
+  - name: kits
+    label: 材料包
+    icon: package_2
+    files:
+      - name: kits
+        label: 材料包列表
+        file: data/kits.json
+        fields:
+          - { name: intro, label: 區塊說明文字, widget: text, required: false, hint: 顯示在「材料包訂購」標題下方的一段話。 }
+          - name: kits
+            label: 材料包
+            label_singular: 材料包
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: 名稱, widget: string }
+              - name: video
+                label: 示範影片(MP4)
+                widget: file
+                required: false
+                hint: 請上傳 30MB 以內、約 30–60 秒的影片;手機拍的請先用內建編輯功能裁短再上傳。沒有影片也可以,會改顯示封面圖。
+              - { name: poster, label: 封面圖, widget: image, required: false, hint: 影片載入前、或沒有影片時顯示的圖片,建議一定要放。 }
+              - { name: price, label: 價格, widget: string, required: false, hint: "例:NT$ 480" }
+              - { name: orderUrl, label: 訂購連結, widget: string, required: false, hint: 蝦皮、賣貨便或表單的網址。 }
+              - { name: available, label: 目前可訂購, widget: boolean, default: true, hint: 取消勾選會顯示「補貨中」。 }
+
+  # ---------- 媒材分類 ----------
+  - name: categories
+    label: 媒材分類
+    icon: category
+    files:
+      - name: categories
+        label: 分類列表
+        file: data/categories.json
+        fields:
+          - name: categories
+            label: 分類
+            label_singular: 分類
+            widget: list
+            summary: "{{fields.label}}"
+            hint: 新增分類後,編輯作品時就能選到,作品集頁的篩選按鈕也會自動出現。
+            fields:
+              - name: slug
+                label: 代號(英文)
+                widget: string
+                pattern: ["^[a-z0-9-]+$", "只能用小寫英文字母、數字、連字號(-)"]
+                hint: 設定之後請不要再改,也不要跟其他分類重複;要改中文名稱請改下面的「顯示名稱」。
+              - { name: label, label: 顯示名稱, widget: string, hint: "例:麥克筆、水墨、水彩" }
+
+  # ---------- 關於我 ----------
+  - name: about
+    label: 關於我
+    icon: person
+    files:
+      - name: about
+        label: 簡介與經歷
+        file: data/about.json
+        fields:
+          - { name: portrait, label: 個人照片, widget: image, required: false }
+          - { name: bio, label: 自我介紹, widget: text, hint: 直接換行就會分段,不用任何特殊符號。 }
+          - name: cv
+            label: 經歷列表
+            label_singular: 經歷
+            widget: list
+            summary: "{{fields.year}} {{fields.text}}"
+            hint: 建議由新到舊排列(拖曳可調整)。
+            fields:
+              - { name: year, label: 年份, widget: string, hint: "例:2026 或 2016-2020" }
+              - name: category
+                label: 類型
+                widget: select
+                options:
+                  - { label: 展覽, value: exhibition }
+                  - { label: 獲獎, value: award }
+                  - { label: 學歷, value: education }
+                  - { label: 經歷, value: experience }
+              - { name: text, label: 內容, widget: string }
+
+  # ---------- 教學課程 ----------
+  - name: courses
+    label: 教學課程
+    icon: school
+    files:
+      - name: courses
+        label: 課程列表
+        file: data/courses.json
+        fields:
+          - { name: intro, label: 頁面說明文字, widget: text, required: false }
+          - name: courses
+            label: 課程
+            label_singular: 課程
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: 課程名稱, widget: string }
+              - { name: description, label: 課程介紹, widget: text, required: false }
+              - { name: audience, label: 適合對象, widget: string, required: false }
+              - { name: schedule, label: 上課時間, widget: string, required: false }
+              - { name: location, label: 上課地點, widget: string, required: false }
+              - { name: price, label: 費用, widget: string, required: false }
+              - { name: image, label: 課程圖片, widget: image, required: false }
+              - { name: signupUrl, label: 報名連結, widget: string, required: false, hint: 沒有填的話,網站會顯示「來信詢問」按鈕。 }
+              - { name: open, label: 開放報名中, widget: boolean, default: true, hint: 取消勾選會顯示「額滿/未開課」。 }
+
+  # ---------- 網站設定 ----------
+  - name: settings
+    label: 網站設定
+    icon: settings
+    files:
+      - name: site
+        label: 基本資料與聯絡方式
+        file: data/site.json
+        fields:
+          - { name: siteTitle, label: 網站標題, widget: string, hint: 顯示在網站左上角與瀏覽器分頁上。 }
+          - { name: artistName, label: 姓名/筆名, widget: string }
+          - { name: tagline, label: 一句話介紹, widget: string, required: false, hint: "例:繪畫・娃衣・手作材料包" }
+          - { name: heroImage, label: 首頁大圖, widget: image, required: false }
+          - { name: heroText, label: 首頁標語, widget: string, required: false }
+          - { name: email, label: 聯絡信箱, widget: string }
+          - { name: phone, label: 電話, widget: string, required: false }
+          - { name: location, label: 所在地, widget: string, required: false }
+          - name: social
+            label: 社群連結
+            label_singular: 連結
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - name: platform
+                label: 平台
+                widget: select
+                options:
+                  - { label: Instagram, value: instagram }
+                  - { label: Facebook, value: facebook }
+                  - { label: LINE, value: line }
+                  - { label: YouTube, value: youtube }
+                  - { label: Threads, value: threads }
+                  - { label: 蝦皮, value: shopee }
+                  - { label: 其他, value: other }
+              - { name: label, label: 顯示文字, widget: string }
+              - { name: url, label: 網址, widget: string }

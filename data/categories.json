@@ -1,0 +1,9 @@
+{
+  "categories": [
+    { "slug": "marker", "label": "麥克筆" },
+    { "slug": "ink", "label": "水墨" },
+    { "slug": "watercolor", "label": "水彩" },
+    { "slug": "acrylic", "label": "壓克力" },
+    { "slug": "digital", "label": "電繪" }
+  ]
+}

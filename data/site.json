@@ -1,0 +1,16 @@
+{
+  "siteTitle": "小美工作室",
+  "artistName": "王小美",
+  "tagline": "繪畫・娃衣・手作材料包",
+  "heroImage": "/images/uploads/hero.svg",
+  "heroText": "在紙與布之間,尋找手的溫度。",
+  "email": "artist@example.com",
+  "phone": "0912-345-678",
+  "location": "台北市",
+  "social": [
+    { "platform": "instagram", "label": "Instagram", "url": "https://instagram.com/example" },
+    { "platform": "facebook", "label": "Facebook", "url": "https://facebook.com/example" },
+    { "platform": "line", "label": "LINE 官方帳號", "url": "https://line.me/R/ti/p/@example" },
+    { "platform": "shopee", "label": "蝦皮賣場", "url": "https://shopee.tw/example" }
+  ]
+}

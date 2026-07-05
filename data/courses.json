@@ -1,0 +1,38 @@
+{
+  "intro": "目前開設的課程如下,歡迎來信或私訊詢問。",
+  "courses": [
+    {
+      "title": "水彩基礎班",
+      "description": "從調色、水分控制開始,六堂課完成三幅小品。",
+      "audience": "成人/零基礎",
+      "schedule": "每週六 10:00–12:00",
+      "location": "工作室(台北市)",
+      "price": "六堂 4,200 元(含材料)",
+      "image": "/images/uploads/course-watercolor.svg",
+      "signupUrl": "https://forms.gle/example",
+      "open": true
+    },
+    {
+      "title": "娃衣手縫入門",
+      "description": "一堂課完成一件基本款娃衣,認識工具、布料與基礎針法。",
+      "audience": "成人/零基礎",
+      "schedule": "每月第二個週日 14:00–17:00",
+      "location": "工作室(台北市)",
+      "price": "單堂 1,200 元(含材料包)",
+      "image": "/images/uploads/course-doll.svg",
+      "signupUrl": "",
+      "open": true
+    },
+    {
+      "title": "麥克筆速寫班",
+      "description": "以街景與小物為題,練習快速掌握光影。",
+      "audience": "有素描基礎者",
+      "schedule": "每週三 19:00–21:00",
+      "location": "工作室(台北市)",
+      "price": "四堂 2,800 元",
+      "image": "/images/uploads/course-marker.svg",
+      "signupUrl": "",
+      "open": false
+    }
+  ]
+}

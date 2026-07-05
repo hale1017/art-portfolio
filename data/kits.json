@@ -1,0 +1,29 @@
+{
+  "intro": "每一款材料包都附上裁好的布料、配件與圖文說明書,新手也能完成自己的娃衣。",
+  "kits": [
+    {
+      "name": "小護士 娃衣材料包",
+      "video": "/images/uploads/kit-nurse-demo.mp4",
+      "poster": "/images/uploads/kit-nurse-poster.svg",
+      "price": "NT$ 480",
+      "orderUrl": "https://shopee.tw/example",
+      "available": true
+    },
+    {
+      "name": "小海豹喫茶 娃衣材料包",
+      "video": "",
+      "poster": "/images/uploads/kit-seal-poster.svg",
+      "price": "NT$ 520",
+      "orderUrl": "https://shopee.tw/example",
+      "available": true
+    },
+    {
+      "name": "小裁縫 娃衣材料包",
+      "video": "",
+      "poster": "/images/uploads/kit-tailor-poster.svg",
+      "price": "NT$ 450",
+      "orderUrl": "https://shopee.tw/example",
+      "available": false
+    }
+  ]
+}

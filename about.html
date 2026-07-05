@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>關於我|小美工作室</title>
+  <meta name="description" content="創作者簡介、學經歷、展覽與獲獎紀錄。">
+  <meta property="og:title" content="關於我|小美工作室">
+  <meta property="og:image" content="/images/site/og-default.svg">
+  <meta name="theme-color" content="#faf6f0">
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>關於我</h1>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-portrait"><img id="portrait" alt="創作者照片"></div>
+      <div>
+        <div id="bio"></div>
+        <h2 style="margin-top:32px">經歷</h2>
+        <ol class="timeline" id="cv-list"></ol>
+      </div>
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script type="module" src="js/include.js"></script>
+  <script type="module" src="js/about.js"></script>
+</body>
+</html>

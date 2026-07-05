@@ -1,0 +1,11 @@
+{
+  "portrait": "/images/uploads/portrait.svg",
+  "bio": "你好,我是王小美。\n從小喜歡畫畫,也喜歡縫縫補補。現在的日常,是在畫紙上記錄生活,也為棉花娃娃縫製一件件小小的衣服。\n希望我的作品能帶給你一點點溫暖。",
+  "cv": [
+    { "year": "2026", "category": "exhibition", "text": "個展《紙與布》,台北某藝廊" },
+    { "year": "2025", "category": "award", "text": "全國手作創作獎 入選" },
+    { "year": "2024", "category": "exhibition", "text": "聯展《手感生活》,台中文創園區" },
+    { "year": "2023", "category": "experience", "text": "開始經營娃衣材料包品牌" },
+    { "year": "2016-2020", "category": "education", "text": "某大學美術系 畢業" }
+  ]
+}

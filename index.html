@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小美工作室|繪畫・娃衣・手作材料包</title>
+  <meta name="description" content="美術創作者的個人網站:麥克筆、水墨、水彩、壓克力與電繪作品,棉花娃娃娃衣與手作材料包。">
+  <meta property="og:title" content="小美工作室|繪畫・娃衣・手作材料包">
+  <meta property="og:description" content="繪畫作品、娃衣創作與手作材料包。">
+  <meta property="og:image" content="/images/site/og-default.svg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#faf6f0">
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/billboard.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <main>
+    <!-- hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="tagline" data-tagline></div>
+          <h1 data-hero-title>歡迎光臨</h1>
+          <p class="hero-text" data-hero-text></p>
+          <a class="btn btn-primary" href="gallery.html">看看我的作品</a>
+        </div>
+        <div class="hero-img"><img data-hero-img alt="" ></div>
+      </div>
+    </section>
+
+    <!-- 材料包影片看板 -->
+    <section class="section container" id="kit-section" hidden>
+      <div class="section-head">
+        <h2>娃衣材料包</h2>
+        <a class="more" href="dolls.html">看娃衣作品 →</a>
+      </div>
+      <div id="kit-billboard"></div>
+    </section>
+
+    <!-- 精選作品 -->
+    <section class="section container" id="featured-section" hidden>
+      <div class="section-head">
+        <h2>精選作品</h2>
+        <a class="more" href="gallery.html">全部作品 →</a>
+      </div>
+      <div class="featured-row" id="featured-row"></div>
+    </section>
+
+    <!-- 入口卡 -->
+    <section class="section container">
+      <div class="entry-cards">
+        <a class="entry-card" href="gallery.html">
+          <div class="icon">🎨</div>
+          <h3>作品集</h3>
+          <p>麥克筆、水墨、水彩、壓克力、電繪⋯⋯依媒材瀏覽。</p>
+        </a>
+        <a class="entry-card" href="dolls.html">
+          <div class="icon">🧵</div>
+          <h3>娃衣與材料包</h3>
+          <p>職業系列、動物系列娃衣,與可以帶回家的材料包。</p>
+        </a>
+        <a class="entry-card" href="courses.html">
+          <div class="icon">✏️</div>
+          <h3>教學課程</h3>
+          <p>繪畫與手縫課程,零基礎也能上手。</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script type="module" src="js/include.js"></script>
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>

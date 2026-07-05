@@ -1,0 +1,58 @@
+{
+  "works": [
+    {
+      "title": "山嵐",
+      "category": "ink",
+      "year": 2026,
+      "size": "70 × 45 cm",
+      "description": "宣紙、墨。雨後山色的層次練習。",
+      "image": "/images/uploads/work-ink-1.svg",
+      "featured": true
+    },
+    {
+      "title": "午後街角",
+      "category": "marker",
+      "year": 2025,
+      "size": "A4",
+      "description": "酒精性麥克筆速寫,捕捉光影的即興練習。",
+      "image": "/images/uploads/work-marker-1.svg",
+      "featured": true
+    },
+    {
+      "title": "窗邊的貓",
+      "category": "watercolor",
+      "year": 2025,
+      "size": "26 × 18 cm",
+      "description": "透明水彩,留白與濕中濕的組合。",
+      "image": "/images/uploads/work-watercolor-1.svg",
+      "featured": false
+    },
+    {
+      "title": "果實靜物",
+      "category": "acrylic",
+      "year": 2024,
+      "size": "8F",
+      "description": "壓克力打底與厚塗練習。",
+      "image": "/images/uploads/work-acrylic-1.svg",
+      "featured": false
+    },
+    {
+      "title": "夜市燈火",
+      "category": "digital",
+      "year": 2026,
+      "size": "4000 × 3000 px",
+      "description": "電繪插畫,暖色光源的氛圍營造。",
+      "image": "/images/uploads/work-digital-1.svg",
+      "featured": true
+    },
+    {
+      "title": "墨竹",
+      "category": "ink",
+      "year": 2024,
+      "size": "45 × 34 cm",
+      "description": "沒骨畫法,一筆成葉。",
+      "image": "/images/uploads/work-ink-2.svg",
+      "featured": false
+    }
+  ]
+}

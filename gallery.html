@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品集|小美工作室</title>
+  <meta name="description" content="繪畫作品集:麥克筆、水墨、水彩、壓克力、電繪等媒材分類瀏覽。">
+  <meta property="og:title" content="作品集|小美工作室">
+  <meta property="og:image" content="/images/site/og-default.svg">
+  <meta name="theme-color" content="#faf6f0">
+  <link rel="icon" href="images/site/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+  <site-header></site-header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>作品集</h1>
+      <p class="lede">點選分類篩選,點作品看大圖與說明。</p>
+    </div>
+
+    <div class="chips" id="category-chips" role="group" aria-label="媒材分類篩選"></div>
+    <div class="card-grid" id="works-grid"></div>
+    <div class="empty-note" id="works-empty" hidden>這個分類目前還沒有作品。</div>
+  </main>
+
+  <dialog class="lightbox" id="lightbox" aria-label="作品大圖">
+    <div class="lightbox-figure">
+      <button class="lightbox-close" aria-label="關閉">✕</button>
+      <button class="lightbox-nav prev" aria-label="上一件">‹</button>
+      <img id="lightbox-img" alt="">
+      <button class="lightbox-nav next" aria-label="下一件">›</button>
+    </div>
+    <div class="lightbox-caption">
+      <h3 id="lightbox-title"></h3>
+      <div class="meta" id="lightbox-meta"></div>
+      <p id="lightbox-desc"></p>
+    </div>
+  </dialog>
+
+  <site-footer></site-footer>
+
+  <script type="module" src="js/include.js"></script>
+  <script type="module" src="js/gallery.js"></script>
+</body>
+</html>
