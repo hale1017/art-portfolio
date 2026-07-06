@@ -4,7 +4,7 @@
 
 .billboard {
   position: relative; border-radius: var(--radius); overflow: hidden;
-  background: #262220; box-shadow: var(--shadow-hover);
+  background: var(--stage-bg); box-shadow: var(--shadow-hover);
 }
 .billboard-track { position: relative; height: 420px; }
 @media (max-width: 700px) { .billboard-track { height: 72vw; min-height: 300px; } }
@@ -17,7 +17,7 @@
 .billboard-slide.active { opacity: 1; pointer-events: auto; }
 .billboard-slide video,
 .billboard-slide img.slide-media {
-  width: 100%; height: 100%; object-fit: contain; background: #262220;
+  width: 100%; height: 100%; object-fit: contain; background: var(--stage-bg);
 }
 
 /* 文字與訂購按鈕覆層 */
@@ -29,11 +29,11 @@
   color: #fff;
 }
 .billboard-overlay .kit-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; }
-.billboard-overlay .kit-price { font-size: 0.95rem; color: #f4d9b0; margin-top: 2px; }
+.billboard-overlay .kit-price { font-size: 0.95rem; color: var(--stage-warm); margin-top: 2px; }
 .billboard-overlay .btn-order {
   flex-shrink: 0;
   display: inline-block; padding: 10px 26px; border-radius: 999px;
-  background: var(--accent); color: #fff; font-size: 1rem; text-decoration: none;
+  background: var(--accent); color: var(--on-accent); font-size: 1rem; text-decoration: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 .billboard-overlay .btn-order:hover { background: var(--accent-dark); text-decoration: none; }

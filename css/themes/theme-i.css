@@ -1,0 +1,98 @@
+/* ============================================================
+   Theme I|色紙拼貼 — 撕邊色紙與平塗色塊的拼貼
+   標題字:Iansui 芫荽/內文:Noto Sans TC
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Sans+TC:wght@400;500;700&family=Shantell+Sans:wght@500;700&display=swap');
+
+:root {
+  --bg: #ffffff; --bg-alt: #f6f6f2; --card: #ffffff;
+  --ink: #26241f; --ink-soft: #6e6a60; --line: #e6e3da;
+  --accent: #e0532f; --accent-dark: #b8401f; --accent-soft: #fbe3da;
+  --gold: #a97b1a; --green: #2f7d5b; --blue: #2456a6;
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --footer-bg: #26241f; --footer-ink: #d4d1c8; --footer-head: #ffffff;
+  --footer-link: #e5e2d9; --footer-line: #4c493f; --footer-hr: #403d34; --footer-mute: #9b978a;
+  --stage-bg: #1f1d19; --stage-warm: #f2d38c; --on-accent: #ffffff;
+  --radius: 4px; --radius-sm: 3px;
+  --shadow: 0 2px 8px rgba(30, 25, 15, 0.07);
+  --shadow-hover: 0 6px 16px rgba(30, 25, 15, 0.13);
+  --font-head: "Iansui", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", cursive;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+/* 芫荽只有 400 */
+h1, h2, h3, h4, .brand, .card .card-title,
+.timeline .t-year, .billboard-overlay .kit-name {
+  font-weight: 400; font-synthesis: none;
+}
+.tagline, .section-head .more { font-family: "Shantell Sans", var(--font-body); }
+
+/* header */
+.site-header { border-bottom: 2px solid var(--ink); }
+
+/* 區塊標題:撕邊色紙塊(取代底線) */
+.section-head h2 {
+  display: inline-block;
+  background: var(--accent-soft);
+  clip-path: polygon(2% 18%, 15% 4%, 60% 0, 97% 8%, 100% 60%, 88% 96%, 30% 100%, 3% 88%);
+  padding: 6px 20px 8px 14px;
+  transform: rotate(-1deg);
+}
+.section-head h2::after { display: none; }
+
+/* chips:pressed 三色輪替 */
+.chip { border: 1.6px solid var(--ink-soft); color: var(--ink); border-radius: 3px; }
+.chip[aria-pressed="true"] { border-color: transparent; }
+.chip:nth-child(3n+1)[aria-pressed="true"] { background: #b8401f; }
+.chip:nth-child(3n+2)[aria-pressed="true"] { background: #2456a6; }
+.chip:nth-child(3n)[aria-pressed="true"]   { background: #2f7d5b; }
+
+/* 卡片:無框+底部色紙條(三色輪替) */
+.card { border: none; position: relative; }
+.card::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: var(--accent);
+}
+.card:nth-child(3n+2)::after { background: var(--blue); }
+.card:nth-child(3n)::after { background: var(--green); }
+
+/* hero:兩張大色紙 */
+.hero { position: relative; background: var(--bg-alt); overflow: hidden; }
+.hero::before {
+  content: ''; position: absolute; top: -30px; right: -40px;
+  width: 380px; height: 300px;
+  background: rgba(36, 86, 166, 0.14);
+  clip-path: polygon(8% 12%, 40% 0, 92% 6%, 100% 55%, 86% 94%, 30% 100%, 0 70%);
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -40px; left: -30px;
+  width: 300px; height: 240px;
+  background: rgba(226, 167, 46, 0.20);
+  clip-path: polygon(4% 30%, 30% 4%, 78% 0, 100% 40%, 90% 88%, 40% 100%, 0 78%);
+}
+.hero .hero-inner { position: relative; z-index: 1; }
+.hero .hero-img { border-radius: 3px; box-shadow: 8px 8px 0 var(--accent-soft); }
+
+/* billboard */
+.billboard-overlay .btn-order { border-radius: 3px; }
+
+/* footer:撕紙頂邊 */
+.site-footer { position: relative; }
+.site-footer::before {
+  content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 14px;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'><path d='M0 0h120v4l-12 8-14-7-13 8-11-6-14 7-12-8-13 9-12-7-11 6-8-9Z' fill='%23FFFFFF'/></svg>") repeat-x;
+  background-size: 120px 14px;
+}
+.site-footer .cols { padding-top: 12px; }
+
+/* badge:色紙貼 */
+.badge { display: inline-block; border-radius: 3px; transform: rotate(-2deg); }
+
+/* timeline:方形色紙節點(三色輪替) */
+.timeline li { border-left: 2px solid var(--ink); }
+.timeline li::before {
+  border-radius: 1px; transform: rotate(45deg);
+  background: var(--accent); border-color: var(--bg);
+}
+.timeline li:nth-child(3n+2)::before { background: var(--blue); }
+.timeline li:nth-child(3n)::before { background: var(--green); }

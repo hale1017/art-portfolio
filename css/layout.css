@@ -5,7 +5,7 @@
 /* ---------- header ---------- */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(250, 246, 240, 0.92);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
 }
@@ -49,28 +49,28 @@
 /* ---------- footer ---------- */
 .site-footer {
   margin-top: 56px; padding: 40px 0 32px;
-  background: #332f2a; color: #d8d2c8;
+  background: var(--footer-bg); color: var(--footer-ink);
 }
 .site-footer .cols {
   max-width: var(--maxw); margin: 0 auto; padding: 0 20px;
   display: flex; flex-wrap: wrap; gap: 28px; justify-content: space-between;
 }
-.site-footer h3 { color: #fff; font-size: 1.05rem; margin-bottom: 10px; }
-.site-footer a { color: #e9e3d8; }
-.site-footer a:hover { color: #fff; }
+.site-footer h3 { color: var(--footer-head); font-size: 1.05rem; margin-bottom: 10px; }
+.site-footer a { color: var(--footer-link); }
+.site-footer a:hover { color: var(--footer-head); }
 .footer-contact li { margin-bottom: 4px; }
 .footer-contact ul { list-style: none; margin: 0; padding: 0; font-size: 0.94rem; }
 .social-links { display: flex; gap: 12px; flex-wrap: wrap; }
 .social-links a {
   display: inline-flex; align-items: center; gap: 7px;
-  padding: 7px 14px; border: 1px solid #57524a; border-radius: 999px;
+  padding: 7px 14px; border: 1px solid var(--footer-line); border-radius: 999px;
   font-size: 0.9rem;
 }
-.social-links a:hover { border-color: #fff; text-decoration: none; }
+.social-links a:hover { border-color: var(--footer-head); text-decoration: none; }
 .social-links svg { width: 17px; height: 17px; fill: currentColor; }
 .copyright {
   max-width: var(--maxw); margin: 28px auto 0; padding: 18px 20px 0;
-  border-top: 1px solid #4a453d; font-size: 0.84rem; color: #a89f92;
+  border-top: 1px solid var(--footer-hr); font-size: 0.84rem; color: var(--footer-mute);
 }
 
 /* ---------- 首頁 hero ---------- */

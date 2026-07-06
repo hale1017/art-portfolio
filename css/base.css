@@ -27,6 +27,19 @@
   --radius-sm: 8px;
   --shadow: 0 2px 14px rgba(96, 76, 54, 0.08);
   --shadow-hover: 0 6px 22px rgba(96, 76, 54, 0.14);
+
+  /* 區域色(header / footer / 深色舞台) */
+  --header-bg: rgba(250, 246, 240, 0.92);
+  --footer-bg: #332f2a;
+  --footer-ink: #d8d2c8;
+  --footer-head: #ffffff;
+  --footer-link: #e9e3d8;
+  --footer-line: #57524a;
+  --footer-hr: #4a453d;
+  --footer-mute: #a89f92;
+  --stage-bg: #262220;
+  --stage-warm: #f4d9b0;
+  --on-accent: #ffffff;
 }
 
 /* ---------- reset ---------- */
@@ -75,8 +88,8 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   font-size: 0.98rem; text-decoration: none; transition: all 0.18s ease;
 }
 .btn:hover { background: var(--accent-soft); text-decoration: none; }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-dark); color: #fff; }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover { background: var(--accent-dark); color: var(--on-accent); }
 .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 
 /* ---------- 篩選 chips ---------- */
@@ -87,7 +100,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 }
 .chip:hover { border-color: var(--accent); color: var(--accent-dark); }
 .chip[aria-pressed="true"] {
-  background: var(--accent); border-color: var(--accent); color: #fff;
+  background: var(--accent); border-color: var(--accent); color: var(--on-accent);
 }
 
 /* ---------- 卡片格 ---------- */
@@ -115,7 +128,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 /* ---------- badge ---------- */
 .badge {
   display: inline-block; padding: 2px 10px; border-radius: 999px;
-  font-size: 0.78rem; line-height: 1.6; color: #fff; background: var(--ink-soft);
+  font-size: 0.78rem; line-height: 1.6; color: var(--on-accent); background: var(--ink-soft);
 }
 .badge-occupation { background: var(--blue); }
 .badge-animal { background: var(--green); }
@@ -134,7 +147,7 @@ dialog.lightbox {
 }
 dialog.lightbox::backdrop { background: rgba(30, 24, 18, 0.72); }
 .lightbox-figure {
-  position: relative; background: #262220;
+  position: relative; background: var(--stage-bg);
   display: flex; align-items: center; justify-content: center;
 }
 .lightbox-figure img {
