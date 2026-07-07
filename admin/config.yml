@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: OWNER/art-portfolio # ← 部署時改成實際的「GitHub帳號/倉庫名」
+  repo: hale1017/art-portfolio
   branch: main
   # 部署在 Netlify 並安裝好 OAuth provider 後,這裡不需要其他設定。
 
