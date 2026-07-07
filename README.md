@@ -37,6 +37,24 @@ python tools/serve.py          # http://localhost:8765
   按「Work with Local Repository」選 repo 資料夾,即可直接編輯本地檔案(免 token、免 proxy)。
 - **decap-server**:`npx decap-server`(port 8081),config 已含 `local_backend: true`。
 
+## 設計系統(2026-07 定稿)
+
+由十套候選主題經獨立評審後,藝術家選定「**鉛筆手稿底 × 辰宇落雁體手寫標題**」混血版:
+
+- **色票**:石墨 `#3a3936`(accent)+ 便利貼黃 `#f2c94c`(`--sticky`,全站唯一彩色,只給
+  購買/報名 CTA)+ 近白底 `#fdfdfd`。全部 token 在 `css/base.css` 的 `:root`。
+- **字型**:標題=辰宇落雁體 Thin(手寫),內文=Noto Sans TC,Latin 點綴=Caveat。
+  手寫字型只有 400 → 全站標題 `font-weight:400; font-synthesis:none`,以放大字級補償
+  (藝術家要求手寫字要大)。
+- **裝飾語彙**:筆記本格線 hero(含左紅邊線)、鉛筆亂線標題底線、手繪圈籤片、
+  卡片 hover 手繪雙框、螢光筆標語、便利貼句號、鉛筆空心圈時間軸。
+- **外部依賴注意**:辰宇落雁體走 [ZeoSeven Fonts](https://fontsapi.zeoseven.com/96/main/result.css)
+  切片 CDN(中國服務)。若日後不穩,逃生門:用 fonttools/pyftsubset 對
+  [官方 TTF](https://github.com/Chenyu-otf/chenyuluoyan_thin) 做子集化自架到 `fonts/`
+  (一次性產出,仍零建置);字型鏈已墊 Iansui(Google Fonts)作為手寫 fallback。
+- 十套候選主題與選樣機制封存在 git tag **`themes-archive`**,要回顧或改選時
+  `git checkout themes-archive` 即可。
+
 ## 資料驅動的關鍵設計
 
 - **媒材分類是動態的**:`data/categories.json` 新增一筆 → 後台作品編輯的下拉選單

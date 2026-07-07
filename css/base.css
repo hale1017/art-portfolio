@@ -3,42 +3,43 @@
    ============================================================ */
 
 :root {
-  /* 色票:溫暖紙感 */
-  --bg: #faf6f0;
-  --bg-alt: #f2ebe0;
-  --card: #fffdf9;
-  --ink: #33302a;
-  --ink-soft: #746b5e;
-  --line: #e4dbcc;
-  --accent: #bf5b4b;        /* 珊瑚朱紅 */
-  --accent-dark: #a34a3c;
-  --accent-soft: #f3ded7;
-  --gold: #b98b46;
-  --green: #6d7f5c;
-  --blue: #5c7286;
+  /* 色票:鉛筆手稿(石墨線+便利貼黃) */
+  --bg: #fdfdfd;
+  --bg-alt: #f4f4f2;
+  --card: #ffffff;
+  --ink: #2e2e2c;
+  --ink-soft: #77756f;
+  --line: #dcdbd6;
+  --accent: #3a3936;        /* 石墨 */
+  --accent-dark: #232220;
+  --accent-soft: #ececea;
+  --gold: #8a7a2a;
+  --green: #6e7b64;
+  --blue: #66707e;
+  --sticky: #f2c94c;        /* 便利貼黃:全站唯一的彩色,只給購買/報名 CTA */
 
-  /* 字型 */
-  --font-head: "Noto Serif TC", "PingFang TC", "Microsoft JhengHei", serif;
-  --font-body: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  /* 字型:標題手寫(辰宇落雁體)、內文清晰 */
+  --font-head: "辰宇落雁體 Thin", "Iansui", "PingFang TC", "Microsoft JhengHei", cursive;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
 
   /* 版面 */
   --maxw: 1100px;
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 2px 14px rgba(96, 76, 54, 0.08);
-  --shadow-hover: 0 6px 22px rgba(96, 76, 54, 0.14);
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 5px 16px rgba(0, 0, 0, 0.11);
 
   /* 區域色(header / footer / 深色舞台) */
-  --header-bg: rgba(250, 246, 240, 0.92);
-  --footer-bg: #332f2a;
-  --footer-ink: #d8d2c8;
+  --header-bg: rgba(253, 253, 253, 0.92);
+  --footer-bg: #2e2e2c;
+  --footer-ink: #cfcec9;
   --footer-head: #ffffff;
-  --footer-link: #e9e3d8;
-  --footer-line: #57524a;
-  --footer-hr: #4a453d;
-  --footer-mute: #a89f92;
-  --stage-bg: #262220;
-  --stage-warm: #f4d9b0;
+  --footer-link: #e2e1dc;
+  --footer-line: #55544e;
+  --footer-hr: #454440;
+  --footer-mute: #9c9a93;
+  --stage-bg: #232321;
+  --stage-warm: #f2c94c;
   --on-accent: #ffffff;
 }
 
@@ -54,7 +55,8 @@ body {
   font-size: 16px;
 }
 img, video, svg { max-width: 100%; height: auto; display: block; }
-h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.35; margin: 0 0 0.5em; font-weight: 700; }
+/* 手寫字型只有 400:禁止瀏覽器合成假粗體,改以放大字級補償(見各標題的 font-size) */
+h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.35; margin: 0 0 0.5em; font-weight: 400; font-synthesis: none; }
 p { margin: 0 0 1em; }
 a { color: var(--accent-dark); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -73,10 +75,11 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 12px; margin-bottom: 22px;
 }
-.section-head h2 { margin: 0; font-size: 1.5rem; }
+.section-head h2 { margin: 0; font-size: 2.1rem; }
 .section-head h2::after {
-  content: ""; display: block; width: 46px; height: 4px;
-  margin-top: 8px; border-radius: 2px; background: var(--accent);
+  content: ""; display: block; width: 100px; height: 12px;
+  margin-top: 6px; border-radius: 0;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 12'><path d='M3 7c16-3 34 2 50-1 14-2 28-2 44 0M9 10c20-4 44-5 62-2' stroke='%237a7873' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat left center / contain;
 }
 .section-head .more { font-size: 0.95rem; white-space: nowrap; }
 
@@ -88,17 +91,22 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   font-size: 0.98rem; text-decoration: none; transition: all 0.18s ease;
 }
 .btn:hover { background: var(--accent-soft); text-decoration: none; }
-.btn-primary { background: var(--accent); color: var(--on-accent); }
-.btn-primary:hover { background: var(--accent-dark); color: var(--on-accent); }
+/* 主要 CTA = 便利貼黃(全站唯一彩色,黃底墨字) */
+.btn-primary {
+  background: var(--sticky); border-color: var(--sticky); color: var(--ink);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+.btn-primary:hover { background: #e8ba32; border-color: #e8ba32; color: var(--ink); }
 .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 
 /* ---------- 篩選 chips ---------- */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
 .chip {
-  padding: 7px 18px; border-radius: 999px; border: 1.5px solid var(--line);
+  padding: 7px 18px; border: 1.5px solid #9a988f;
+  border-radius: 255px 25px 225px 25px / 25px 225px 25px 255px; /* 手繪圈 */
   background: var(--card); color: var(--ink-soft); transition: all 0.15s ease;
 }
-.chip:hover { border-color: var(--accent); color: var(--accent-dark); }
+.chip:hover { border-color: var(--ink); color: var(--ink); }
 .chip[aria-pressed="true"] {
   background: var(--accent); border-color: var(--accent); color: var(--on-accent);
 }
@@ -113,7 +121,10 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
   box-shadow: var(--shadow); border: 1px solid var(--line);
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+.card:hover {
+  transform: translateY(-3px); box-shadow: var(--shadow-hover);
+  outline: 1px solid #9a988f; outline-offset: 3px; /* 手繪雙框 */
+}
 .card > button {
   all: unset; display: block; width: 100%; cursor: pointer;
 }
@@ -122,7 +133,7 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 }
 .card .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .card .card-body { padding: 12px 16px 14px; }
-.card .card-title { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; }
+.card .card-title { font-family: var(--font-head); font-size: 1.4rem; font-weight: 400; font-synthesis: none; }
 .card .card-meta { font-size: 0.85rem; color: var(--ink-soft); margin-top: 2px; }
 
 /* ---------- badge ---------- */
@@ -153,8 +164,8 @@ dialog.lightbox::backdrop { background: rgba(30, 24, 18, 0.72); }
 .lightbox-figure img {
   max-height: min(62vh, 640px); width: auto; max-width: 100%; object-fit: contain;
 }
-.lightbox-caption { padding: 16px 22px 20px; }
-.lightbox-caption h3 { margin: 0 0 4px; font-size: 1.2rem; }
+.lightbox-caption { padding: 16px 22px 20px; border-top: 1px solid var(--line); }
+.lightbox-caption h3 { margin: 0 0 4px; font-size: 1.55rem; }
 .lightbox-caption .meta { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 6px; }
 .lightbox-caption p { margin: 0; font-size: 0.95rem; }
 .lightbox-close {

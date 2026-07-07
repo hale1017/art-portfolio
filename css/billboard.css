@@ -28,15 +28,15 @@
   display: flex; align-items: flex-end; justify-content: space-between; gap: 14px;
   color: #fff;
 }
-.billboard-overlay .kit-name { font-family: var(--font-head); font-size: 1.2rem; font-weight: 700; }
+.billboard-overlay .kit-name { font-family: var(--font-head); font-size: 1.6rem; font-weight: 400; font-synthesis: none; }
 .billboard-overlay .kit-price { font-size: 0.95rem; color: var(--stage-warm); margin-top: 2px; }
 .billboard-overlay .btn-order {
   flex-shrink: 0;
-  display: inline-block; padding: 10px 26px; border-radius: 999px;
-  background: var(--accent); color: var(--on-accent); font-size: 1rem; text-decoration: none;
+  display: inline-block; padding: 10px 26px; border-radius: 4px;
+  background: var(--sticky); color: var(--ink); font-size: 1rem; text-decoration: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
-.billboard-overlay .btn-order:hover { background: var(--accent-dark); text-decoration: none; }
+.billboard-overlay .btn-order:hover { background: #e8ba32; text-decoration: none; }
 
 /* 補貨中 */
 .billboard-slide.soldout .slide-media, .billboard-slide.soldout video { filter: grayscale(0.7) brightness(0.7); }
