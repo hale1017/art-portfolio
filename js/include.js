@@ -86,10 +86,7 @@ class SiteFooter extends HTMLElement {
             <div class="social-links" data-social></div>
           </div>
         </div>
-        <div class="copyright">
-          <span data-copy></span>
-          <a class="manual-link" href="/manual.html">網站使用手冊</a>
-        </div>
+        <div class="copyright" data-copy></div>
       </footer>`;
 
     loadData('site')
