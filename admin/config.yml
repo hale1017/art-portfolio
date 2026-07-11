@@ -50,6 +50,18 @@ collections:
               - { name: size, label: 尺寸, widget: string, required: false, hint: "例:70 × 45 cm、A4、4000 × 3000 px" }
               - { name: description, label: 作品說明, widget: text, required: false }
               - { name: image, label: 作品圖片, widget: image, hint: 建議寬度 2000 像素以內,檔案 5MB 以下。 }
+              - name: focus
+                label: 縮圖對齊
+                widget: select
+                default: center
+                required: false
+                options:
+                  - { label: 置中(預設), value: center }
+                  - { label: 靠上, value: top }
+                  - { label: 靠下, value: bottom }
+                  - { label: 靠左, value: left }
+                  - { label: 靠右, value: right }
+                hint: 作品集縮圖是固定比例、會裁掉多餘部分。若切到重要部分,選要保留哪一側(例如切到上方就選「靠上」)。點開的大圖不受影響。
               - { name: featured, label: 放到首頁精選, widget: boolean, default: false }
 
   # ---------- 娃衣作品 ----------
@@ -80,6 +92,18 @@ collections:
                 label_singular: 照片
                 widget: list
                 field: { name: image, label: 照片, widget: image }
+              - name: focus
+                label: 封面縮圖對齊
+                widget: select
+                default: center
+                required: false
+                options:
+                  - { label: 置中(預設), value: center }
+                  - { label: 靠上, value: top }
+                  - { label: 靠下, value: bottom }
+                  - { label: 靠左, value: left }
+                  - { label: 靠右, value: right }
+                hint: 封面縮圖(第一張照片)是固定比例、會裁掉多餘部分。若切到重要部分,選要保留哪一側。點開的大圖不受影響。
               - { name: description, label: 介紹, widget: text, required: false }
               - { name: year, label: 年份, widget: number, value_type: int, required: false }
               - { name: featured, label: 放到首頁精選, widget: boolean, default: false }
@@ -144,6 +168,18 @@ collections:
         file: data/about.json
         fields:
           - { name: portrait, label: 個人照片, widget: image, required: false }
+          - name: portraitFocus
+            label: 個人照片對齊
+            widget: select
+            default: center
+            required: false
+            options:
+              - { label: 置中(預設), value: center }
+              - { label: 靠上, value: top }
+              - { label: 靠下, value: bottom }
+              - { label: 靠左, value: left }
+              - { label: 靠右, value: right }
+            hint: 個人照片是直式固定比例、會裁掉多餘部分。臉被切到就選「靠上」。
           - { name: bio, label: 自我介紹, widget: text, hint: 直接換行就會分段,不用任何特殊符號。 }
           - name: cv
             label: 經歷列表
@@ -186,6 +222,18 @@ collections:
               - { name: location, label: 上課地點, widget: string, required: false }
               - { name: price, label: 費用, widget: string, required: false }
               - { name: image, label: 課程圖片, widget: image, required: false }
+              - name: focus
+                label: 縮圖對齊
+                widget: select
+                default: center
+                required: false
+                options:
+                  - { label: 置中(預設), value: center }
+                  - { label: 靠上, value: top }
+                  - { label: 靠下, value: bottom }
+                  - { label: 靠左, value: left }
+                  - { label: 靠右, value: right }
+                hint: 課程縮圖是固定比例(16:9)、會裁掉多餘部分。若切到重要部分,選要保留哪一側。
               - { name: signupUrl, label: 報名連結, widget: string, required: false, hint: 沒有填的話,網站會顯示「來信詢問」按鈕。 }
               - { name: open, label: 開放報名中, widget: boolean, default: true, hint: 取消勾選會顯示「額滿/未開課」。 }
 
@@ -202,6 +250,18 @@ collections:
           - { name: artistName, label: 姓名/筆名, widget: string }
           - { name: tagline, label: 一句話介紹, widget: string, required: false, hint: "例:繪畫・娃衣・手作材料包" }
           - { name: heroImage, label: 首頁大圖, widget: image, required: false }
+          - name: heroFocus
+            label: 首頁大圖對齊
+            widget: select
+            default: center
+            required: false
+            options:
+              - { label: 置中(預設), value: center }
+              - { label: 靠上, value: top }
+              - { label: 靠下, value: bottom }
+              - { label: 靠左, value: left }
+              - { label: 靠右, value: right }
+            hint: 首頁大圖是固定比例、會裁掉多餘部分。若切到重要部分,選要保留哪一側。
           - { name: heroText, label: 首頁標語, widget: string, required: false }
           - { name: email, label: 聯絡信箱, widget: string }
           - { name: phone, label: 電話, widget: string, required: false }

@@ -33,13 +33,30 @@ export function imgURL(path, width) {
 }
 
 /**
+ * 縮圖對齊:把後台的 focus 值(center/top/bottom/left/right)轉成 CSS object-position。
+ * 縮圖是「填滿固定比例框 + 裁掉多餘」,這個值決定裁切時保留哪一側。
+ */
+const FOCUS_POSITION = {
+  center: 'center',
+  top: 'center top',
+  bottom: 'center bottom',
+  left: 'left center',
+  right: 'right center',
+};
+export function focusPosition(focus) {
+  return FOCUS_POSITION[focus] || 'center';
+}
+
+/**
  * 建立 <img>:自帶「CDN 載入失敗就退回原圖」的保險。
  * 部署到非 Netlify 環境也不會破圖。
+ * focus 控制縮圖裁切時保留哪一側(見 focusPosition)。
  */
-export function makeImg(path, width, alt = '', lazy = true) {
+export function makeImg(path, width, alt = '', focus = 'center', lazy = true) {
   const img = document.createElement('img');
   img.src = imgURL(path, width);
   img.alt = alt;
+  img.style.objectPosition = focusPosition(focus);
   if (lazy) img.loading = 'lazy';
   if (img.src !== path) {
     img.addEventListener('error', () => { img.src = path; }, { once: true });

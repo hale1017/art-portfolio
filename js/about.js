@@ -2,7 +2,7 @@
    about.js — 關於我:簡介段落 + 經歷 timeline
    ============================================================ */
 
-import { loadData, imgURL, paragraphs } from './data.js';
+import { loadData, imgURL, paragraphs, focusPosition } from './data.js';
 
 const CV_LABEL = {
   exhibition: '展覽',
@@ -23,6 +23,7 @@ async function init() {
   const portrait = document.getElementById('portrait');
   if (data.portrait) {
     portrait.src = imgURL(data.portrait, 600);
+    portrait.style.objectPosition = focusPosition(data.portraitFocus);
     portrait.addEventListener('error', () => { portrait.src = data.portrait; }, { once: true });
   } else {
     portrait.closest('.about-portrait').hidden = true;

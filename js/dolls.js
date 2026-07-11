@@ -59,7 +59,7 @@ function renderGrid() {
 
     const thumb = document.createElement('div');
     thumb.className = 'thumb';
-    thumb.appendChild(makeImg((d.images || [])[0], 480, d.name));
+    thumb.appendChild(makeImg((d.images || [])[0], 480, d.name, d.focus));
 
     const body = document.createElement('div');
     body.className = 'card-body';

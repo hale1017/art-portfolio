@@ -29,7 +29,7 @@ async function init() {
     if (c.image) {
       const thumb = document.createElement('div');
       thumb.className = 'thumb';
-      thumb.appendChild(makeImg(c.image, 640, c.title));
+      thumb.appendChild(makeImg(c.image, 640, c.title, c.focus));
       card.appendChild(thumb);
     }
 

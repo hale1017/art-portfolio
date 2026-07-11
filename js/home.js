@@ -2,7 +2,7 @@
    home.js — 首頁:hero、材料包看板、精選作品
    ============================================================ */
 
-import { loadData, imgURL, makeImg } from './data.js';
+import { loadData, imgURL, makeImg, focusPosition } from './data.js';
 import { initBillboard } from './kits.js';
 
 const SERIES_LABEL = { occupation: '職業系列', animal: '動物系列' };
@@ -20,6 +20,7 @@ async function init() {
     const heroImg = document.querySelector('[data-hero-img]');
     if (site.heroImage) {
       heroImg.src = imgURL(site.heroImage, 1200);
+      heroImg.style.objectPosition = focusPosition(site.heroFocus);
       heroImg.addEventListener('error', () => { heroImg.src = site.heroImage; }, { once: true });
     } else {
       heroImg.closest('.hero-img').hidden = true;
@@ -46,6 +47,7 @@ async function init() {
         .map((w) => ({
           title: w.title,
           image: w.image,
+          focus: w.focus,
           meta: [labelOf.get(w.category), w.year].filter(Boolean).join('・'),
           href: 'gallery.html#cat=' + encodeURIComponent(w.category || 'all'),
         })),
@@ -54,6 +56,7 @@ async function init() {
         .map((d) => ({
           title: d.name,
           image: (d.images || [])[0],
+          focus: d.focus,
           meta: ['娃衣', SERIES_LABEL[d.series]].filter(Boolean).join('・'),
           href: 'dolls.html#series=' + encodeURIComponent(d.series || 'all'),
         })),
@@ -71,7 +74,7 @@ async function init() {
 
         const thumb = document.createElement('div');
         thumb.className = 'thumb';
-        thumb.appendChild(makeImg(f.image, 480, f.title));
+        thumb.appendChild(makeImg(f.image, 480, f.title, f.focus));
 
         const body = document.createElement('div');
         body.className = 'card-body';
