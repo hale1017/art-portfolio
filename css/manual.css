@@ -1,0 +1,145 @@
+/* ============================================================
+   manual.css — /manual.html 專用樣式(獨立頁面,沿用網站色票)
+   ============================================================ */
+
+:root {
+  --paper: #fdfdfd;
+  --paper-alt: #f4f4f2;
+  --card: #ffffff;
+  --ink: #2b2a28;
+  --ink-soft: #726f68;
+  --line: #dcdbd6;
+  --graphite: #3a3936;
+  --sticky: #f2c94c;
+  --sticky-ink: #2b2a28;
+  --margin: #d98f8f;
+  --radius: 8px;
+  --font-body: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", "Hiragino Sans", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1d1c1a; --paper-alt: #252420; --card: #242320;
+    --ink: #ece8df; --ink-soft: #a39e93; --line: #423f3a;
+    --graphite: #e7e2d5; --margin: #b97373;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font-body);
+  font-size: 16px; line-height: 1.75; -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--sticky); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; } }
+
+.page { max-width: 640px; margin: 0 auto; padding-bottom: 56px; }
+
+/* ---------- 頂列 + 快速跳轉 ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-inner { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 14px 20px 8px; }
+.brand { font-weight: 700; font-size: 1.02rem; letter-spacing: 0.02em; text-decoration: none; }
+.doc-label { font-size: 0.82rem; color: var(--ink-soft); white-space: nowrap; }
+.quicknav { display: flex; gap: 6px; overflow-x: auto; padding: 0 20px 12px; -ms-overflow-style: none; scrollbar-width: none; }
+.quicknav::-webkit-scrollbar { display: none; }
+.quicknav a {
+  flex: none; text-decoration: none; font-size: 0.84rem; color: var(--ink-soft);
+  background: var(--paper-alt); border: 1px solid var(--line);
+  border-radius: 999px; padding: 5px 13px; white-space: nowrap;
+}
+.quicknav a:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+main { display: flex; flex-direction: column; gap: 52px; padding: 0 20px; }
+
+h2 { display: flex; align-items: baseline; gap: 10px; font-size: 1.3rem; font-weight: 700; margin: 0 0 20px; text-wrap: balance; }
+h2 .num {
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+  font-size: 0.78rem; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.04em;
+}
+h3 { font-size: 1.08rem; font-weight: 700; margin: 0 0 10px; }
+
+/* ---------- hero / 開場 ---------- */
+.hero-note { position: relative; padding-top: 28px; padding-left: 18px; }
+.margin-rule { position: absolute; left: 0; top: 0; bottom: 0; width: 1.5px; background: var(--margin); }
+.hero-note h1 { font-size: clamp(1.6rem, 5vw, 2rem); font-weight: 700; margin: 0 0 12px; text-wrap: balance; }
+.lede { font-size: 1.02rem; color: var(--ink-soft); margin: 0 0 22px; max-width: 34em; }
+.lede strong { color: var(--ink); }
+
+.link-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.link-chip {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 12px 16px; border-radius: var(--radius);
+  border: 1px solid var(--line); background: var(--card); text-decoration: none;
+}
+.link-chip:hover { border-color: var(--ink-soft); }
+.link-chip.is-primary { background: var(--sticky); border-color: var(--sticky); color: var(--sticky-ink); }
+.link-label { font-size: 0.78rem; color: var(--ink-soft); letter-spacing: 0.03em; }
+.link-chip.is-primary .link-label { color: color-mix(in srgb, var(--sticky-ink) 70%, transparent); }
+.link-url { font-family: var(--font-mono); font-size: 0.92rem; word-break: break-all; }
+.hint { font-size: 0.9rem; color: var(--ink-soft); margin: 0; }
+
+/* ---------- 步驟清單 ---------- */
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: step; }
+.steps li { position: relative; padding-left: 34px; }
+.steps li::before {
+  content: counter(step); counter-increment: step;
+  position: absolute; left: 0; top: 0.05em;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--graphite); color: var(--paper);
+  font-family: var(--font-mono); font-size: 0.76rem; font-weight: 600; font-variant-numeric: tabular-nums;
+  display: flex; align-items: center; justify-content: center;
+}
+.steps li strong { color: var(--ink); }
+
+/* ---------- 提示卡 ---------- */
+.callout { margin-top: 16px; padding: 14px 16px; border-radius: var(--radius); background: var(--paper-alt); border: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-soft); }
+.callout strong { color: var(--ink); }
+.callout.is-warning { background: color-mix(in srgb, var(--sticky) 22%, var(--paper)); border-color: color-mix(in srgb, var(--sticky) 55%, var(--line)); }
+.note { font-size: 0.9rem; color: var(--ink-soft); margin: 12px 0 0; }
+.note strong { color: var(--ink); }
+
+/* ---------- 任務卡片 ---------- */
+#tasks h2 { margin-bottom: 8px; }
+.task-list { display: flex; flex-direction: column; gap: 28px; margin-top: 20px; }
+.task { padding: 18px 18px 20px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+.task-lede { font-size: 0.9rem; color: var(--ink-soft); margin: -4px 0 12px; }
+
+.quick-list { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.quick-list > div { display: flex; flex-direction: column; gap: 2px; }
+.quick-list dt { font-weight: 700; font-size: 0.96rem; }
+.quick-list dd { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+
+/* ---------- 表格 ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+thead th { background: var(--paper-alt); color: var(--ink-soft); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.04em; }
+tbody tr:last-child td { border-bottom: none; }
+tbody td:first-child { color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+/* ---------- 救援區 ---------- */
+.reassure { position: relative; padding-left: 18px; }
+.big-reassure { font-size: 1.12rem; font-weight: 700; margin: 0 0 20px; text-wrap: balance; }
+
+/* ---------- FAQ ---------- */
+.faq-list { display: flex; flex-direction: column; gap: 20px; }
+.faq-item { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+.q { font-weight: 700; margin: 0 0 6px; }
+.q::before { content: "Q "; color: var(--ink-soft); font-family: var(--font-mono); }
+.a { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+/* ---------- 頁尾 ---------- */
+footer {
+  margin-top: 52px; padding: 22px 20px 0; border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 6px;
+}
+footer .foot-brand { font-weight: 700; }
+footer .foot-note { font-size: 0.86rem; color: var(--ink-soft); }
