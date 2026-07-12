@@ -7,7 +7,8 @@
 
 純 vanilla HTML/CSS/JS,頁面在瀏覽器端 fetch `data/*.json` 渲染;
 內容由 [Sveltia CMS](https://github.com/sveltia/sveltia-cms)(Decap 相容)在 `/admin/` 編輯,
-背後直接 commit 到 GitHub;部署 Netlify(無 build command,push 即上線)。
+背後直接 commit 到 GitHub;部署 **Cloudflare Workers**(無 build command,push 即上線,
+2026-07 起取代 Netlify——原因見下方「部署」章節)。
 **沒有 npm、沒有 node_modules、沒有建置步驟。**
 
 ## 目錄結構
@@ -20,8 +21,10 @@ js/         include.js(共用header/footer) data.js(loadData/imgURL)
 data/       site / categories / works / dolls / kits / about / courses (.json)
 images/     uploads/(CMS 上傳的圖與影片) site/(favicon、OG 圖)
 admin/      index.html(Sveltia,版本釘死) config.yml(全繁中欄位)
-tools/      serve.py(本機開發伺服器,支援 HTTP Range)
-netlify.toml
+tools/      serve.py(本機開發伺服器,支援 HTTP Range) process_images.py(壓縮+縮圖)
+.github/workflows/images.yml   上傳圖片自動壓縮+預產縮圖(GitHub Action)
+_headers    Cloudflare Pages/Workers 的快取設定(取代 netlify.toml 的 headers)
+netlify.toml(舊 Netlify 部署遺留,已停用但保留備查)
 ```
 
 ## 本機開發
@@ -85,21 +88,52 @@ python tools/serve.py          # http://localhost:8765
   (2026-07 起不再用 Netlify Image CDN 即時轉換 —— credits 計費大宗,
   且預產縮圖讓網站不依賴任何主機的影像服務。)
 - **影片**直出檔案(不經 CDN),靠 `preload="metadata"` + 同時只播一支省頻寬。
-  上傳規範:單支 ≤30MB、約 30–60 秒(CMS 欄位有 hint,手冊有教學)。
-  GitHub 單檔硬限 100MB。若影片累積過多 → 擴充點:`js/kits.js` 可加
+  上傳規範:單支 **≤20MB**、約 30–60 秒(CMS 欄位有 hint,手冊有教學)。
+  上限來自 **Cloudflare Workers 的 25MiB 單檔硬限**(超過會讓整次部署失敗,
+  比舊的 GitHub 100MB 限制更嚴格,遷移時已同步收緊 config.yml 的提示文字)。
+  若影片累積過多 → 擴充點:`js/kits.js` 可加
   「video 欄位若是 YouTube 網址就改用 iframe」的判斷,無痛混用外連影片。
 
-## 部署(一次性設定)
+## 部署:Cloudflare Workers(現行,2026-07 起)
 
-1. GitHub 建 repo(建議建在**美術人帳號**下,開發者掛 collaborator),push。
-2. `admin/config.yml` 的 `backend.repo` 改成實際 `帳號/repo名`。
-3. Netlify「Import from Git」選 repo;build command **留空**、publish 設 `.`。
+**為什麼從 Netlify 換過來:** Netlify 免費方案改成 credits 計價後,
+**每次後台存檔 = 一次 production deploy = 固定 15 credits**,一個月存檔量就把額度燒光
+(用量截圖顯示 21 次部署吃掉 315/320.2 credits,佔 98%;流量與影像轉換合計不到 2%)。
+這是 Netlify 免費方案的結構性成本,無法靠優化圖片或減少流量解決。
+Cloudflare 的 Workers/Pages 免費方案**沒有 credits 制**、不限流量、每月 500 次部署額度,
+用量遠低於上限,徹底解決此問題。
+
+**目前這個 repo 的實際設定(供之後重建或排錯對照):**
+
+1. `hale1017/art-portfolio` repo 保持 **public**(見下方「為什麼 repo 是公開的」)。
+2. Cloudflare Dashboard → **Workers & Pages → Create → Connect to Git** → 選這個 repo,
+   branch `main`;build command **留空**、輸出目錄 `.`。
+   (新版 Cloudflare 介面會建成 **Worker** 而非 Pages,行為與純靜態託管一致,無需在意名稱。)
+3. 部署 [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)
+   (Sveltia 官方登入用 OAuth client,跑在獨立的 Cloudflare Worker 上):
+   repo README 的「Deploy to Cloudflare Workers」按鈕一鍵部署。
 4. GitHub → Settings → Developer settings → OAuth Apps → New OAuth App:
-   callback URL 填 `https://api.netlify.com/auth/done`。
-5. Netlify 站台 → Access & security → OAuth → Install provider(GitHub),貼 Client ID/Secret。
-6. 用美術人的 GitHub 帳號開 `https://<site>.netlify.app/admin/` 驗收。
+   callback URL 填 `https://<你的 sveltia-cms-auth worker 網址>/callback`。
+5. 回 sveltia-cms-auth 那個 Worker → **Settings → Variables and Secrets**,新增三筆:
+   `GITHUB_CLIENT_ID`(Text)、`GITHUB_CLIENT_SECRET`(Secret,需 Encrypt)、
+   `ALLOWED_DOMAINS`(Text,填網站本身的 Worker 網址)。
+   **存完金鑰後,務必到 Deployments/Version History 把新版本「Promote to
+   production」**——單純儲存變數只會產生新版本,不會自動切換上線流量,
+   這是這次遷移唯一卡關的步驟。
+6. `admin/config.yml` 的 `backend.base_url` 指向 sveltia-cms-auth 的 Worker 網址
+   (已設定好,見 `backend:` 區塊)。
+7. 用美術人的 GitHub 帳號開 `https://<網站 worker 網址>/admin/`,點
+   **Sign In with GitHub** 驗收。
    (備援登入:fine-grained PAT,Sveltia 登入頁的「Sign In Using Access Token」。)
-7. 不要用 Netlify Identity / Git Gateway —— 已被官方棄用。
+
+**單檔限制:** Cloudflare Workers 單檔 **25MiB 硬限**,超過會讓整次部署失敗
+(比 Netlify 嚴格)。CMS 影片欄位提示已從 30MB 收緊到 20MB。
+
+## 舊部署:Netlify(2026-07 前,已停用)
+
+Import from Git、build command 留空、publish `.`,OAuth 走 Netlify 內建的
+GitHub provider(Settings → Access & security → OAuth)。不要用 Netlify Identity /
+Git Gateway —— 已被官方棄用。`netlify.toml` 保留在 repo 內備查,Cloudflare 不會讀取它。
 
 ## 救援與還原
 
