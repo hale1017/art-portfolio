@@ -4,11 +4,12 @@
       "name": "小裁縫",
       "series": "occupation",
       "images": [
-        "/images/uploads/IMG_9031.jpeg",
-        "/images/uploads/doll-tailor-2.svg"
+        "/images/uploads/IMG_3735.jpeg",
+        "/images/uploads/IMG_3969.jpeg"
       ],
-      "description": "圍裙、針插手環與捲尺小配件,向每一位手作人致敬。",
-      "year": 2026,
+      "focus": "center",
+      "description": "第一套設計的套裝，頭上戴著針包帽，手持著剪刀的裁縫小幫手！",
+      "year": 2024,
       "featured": true
     },
     {
