@@ -58,7 +58,7 @@ function renderGrid() {
     btn.addEventListener('click', () => openLightbox(d));
 
     const thumb = document.createElement('div');
-    thumb.className = 'thumb';
+    thumb.className = 'thumb thumb--portrait';
     thumb.appendChild(makeImg((d.images || [])[0], 480, d.name, d.focus));
 
     const body = document.createElement('div');

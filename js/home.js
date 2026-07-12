@@ -57,6 +57,7 @@ async function init() {
           title: d.name,
           image: (d.images || [])[0],
           focus: d.focus,
+          portrait: true,
           meta: ['娃衣', SERIES_LABEL[d.series]].filter(Boolean).join('・'),
           href: 'dolls.html#series=' + encodeURIComponent(d.series || 'all'),
         })),
@@ -73,7 +74,7 @@ async function init() {
         a.style.color = 'inherit';
 
         const thumb = document.createElement('div');
-        thumb.className = 'thumb';
+        thumb.className = 'thumb' + (f.portrait ? ' thumb--portrait' : '');
         thumb.appendChild(makeImg(f.image, 480, f.title, f.focus));
 
         const body = document.createElement('div');
