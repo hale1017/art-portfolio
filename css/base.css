@@ -154,10 +154,14 @@ button { font-family: inherit; font-size: inherit; cursor: pointer; }
 .badge-experience { background: var(--green); }
 .badge-closed { background: var(--ink-soft); }
 
-/* ---------- lightbox(原生 dialog) ---------- */
+/* ---------- lightbox(原生 dialog) ----------
+   對話框貼合圖片寬(fit-content),不再固定 920px —— 直式照片不會兩側黑邊;
+   圖高上限 80vh,放大圖夠大。caption 用 width:0 + min-width:100% 技巧,
+   寬度跟著圖片走、不會反過來撐開對話框。 */
 dialog.lightbox {
   border: none; border-radius: var(--radius); padding: 0;
-  max-width: min(920px, 92vw); width: 100%;
+  width: fit-content; max-width: 92vw; min-width: min(320px, 90vw);
+  max-height: 92vh; overflow: auto;
   background: var(--card); color: var(--ink);
   box-shadow: 0 12px 48px rgba(40, 30, 20, 0.35);
 }
@@ -167,9 +171,12 @@ dialog.lightbox::backdrop { background: rgba(30, 24, 18, 0.72); }
   display: flex; align-items: center; justify-content: center;
 }
 .lightbox-figure img {
-  max-height: min(62vh, 640px); width: auto; max-width: 100%; object-fit: contain;
+  /* 92vh 扣掉 caption 的高度(窄框時說明會折兩行,預留 165px),
+     圖片+說明剛好塞進畫面不出捲軸 */
+  max-height: min(calc(92vh - 165px), 1400px);
+  width: auto; max-width: 100%; object-fit: contain;
 }
-.lightbox-caption { padding: 16px 22px 20px; border-top: 1px solid var(--line); }
+.lightbox-caption { padding: 16px 22px 20px; border-top: 1px solid var(--line); width: 0; min-width: 100%; }
 .lightbox-caption h3 { margin: 0 0 4px; font-size: 1.55rem; }
 .lightbox-caption .meta { color: var(--ink-soft); font-size: 0.88rem; margin-bottom: 6px; }
 .lightbox-caption p { margin: 0; font-size: 0.95rem; }
