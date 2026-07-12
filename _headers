@@ -1,0 +1,13 @@
+# Cloudflare Pages 的 headers 設定(對應 netlify.toml,遷移後生效;Netlify 會忽略此檔)
+
+# 內容資料:每次都重新驗證,後台改完馬上看得到
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 上傳的圖片/影片:快取 7 天(避免同名覆蓋後被舊快取卡住太久)
+/images/uploads/*
+  Cache-Control: public, max-age=604800
+
+# 預產縮圖(GitHub Action 生成):同樣快取 7 天
+/images/thumbs/*
+  Cache-Control: public, max-age=604800

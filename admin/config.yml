@@ -129,7 +129,7 @@ collections:
                 label: 示範影片(MP4)
                 widget: file
                 required: false
-                hint: 請上傳 30MB 以內、約 30–60 秒的影片;手機拍的請先用內建編輯功能裁短再上傳。沒有影片也可以,會改顯示封面圖。
+                hint: 請上傳 20MB 以內、約 30–60 秒的影片;手機拍的請先用內建編輯功能裁短再上傳。沒有影片也可以,會改顯示封面圖。(超過 20MB 網站會更新失敗,務必先裁短)
               - { name: poster, label: 封面圖, widget: image, required: false, hint: 影片載入前、或沒有影片時顯示的圖片,建議一定要放。 }
               - { name: price, label: 價格, widget: string, required: false, hint: "例:NT$ 480" }
               - { name: orderUrl, label: 訂購連結, widget: string, required: false, hint: 蝦皮、賣貨便或表單的網址。 }
