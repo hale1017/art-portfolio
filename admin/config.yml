@@ -7,7 +7,9 @@ backend:
   name: github
   repo: hale1017/art-portfolio
   branch: main
-  # 部署在 Netlify 並安裝好 OAuth provider 後,這裡不需要其他設定。
+  # 網站遷到 Cloudflare 後,登入改走自架的 sveltia-cms-auth Worker
+  # (取代原本 Netlify 內建的 OAuth provider)。
+  base_url: https://sveltia-cms-auth.hale911129.workers.dev
 
 # 本機開發測試用(正式站不受影響):在專案資料夾執行 npx decap-server
 local_backend: true
