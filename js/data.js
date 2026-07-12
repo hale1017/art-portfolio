@@ -23,13 +23,18 @@ const IS_LOCAL =
   location.protocol === 'file:';
 
 /**
- * 圖片網址:部署在 Netlify 時走 Image CDN 自動縮圖轉 WebP,
- * 本機或其他環境回傳原始路徑。
+ * 圖片網址:改用倉庫內預產的縮圖(images/thumbs/,由 GitHub Action 自動生成),
+ * 不再依賴主機的即時影像服務(Netlify Image CDN 走 credits 計費)。
+ * 縮圖只有 480 / 1600 兩種寬度;SVG、影片與外部網址直接用原檔。
+ * 本機開發回傳原始路徑;縮圖尚未生成時由呼叫端的 onerror 保險退回原圖。
  */
 export function imgURL(path, width) {
   if (!path) return '';
-  if (IS_LOCAL || !path.startsWith('/')) return path;
-  return `/.netlify/images?url=${encodeURIComponent(path)}&w=${width}&fit=cover&fm=webp&q=75`;
+  if (IS_LOCAL || !path.startsWith('/images/uploads/')) return path;
+  if (!/\.(jpe?g|png)$/i.test(path)) return path;
+  const stem = path.slice('/images/uploads/'.length).replace(/\.[^.]+$/, '');
+  const w = width <= 800 ? 480 : 1600;
+  return `/images/thumbs/${encodeURIComponent(stem)}-${w}.webp`;
 }
 
 /**

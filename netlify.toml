@@ -15,3 +15,9 @@
   for = "/images/uploads/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# 預產縮圖(GitHub Action 生成):同樣快取 7 天
+[[headers]]
+  for = "/images/thumbs/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

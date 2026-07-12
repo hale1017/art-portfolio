@@ -77,9 +77,13 @@ python tools/serve.py          # http://localhost:8765
 
 ## 圖片與影片
 
-- 前台圖片經 **Netlify Image CDN**(`js/data.js` 的 `imgURL()`):
-  卡片 480px / lightbox 1600px / hero 1200px,自動轉 WebP。
-  本機直接回原始路徑;`<img>` 掛了 onerror 保險,非 Netlify 環境自動退回原圖。
+- 前台圖片用 **倉庫內預產縮圖**(`images/thumbs/<檔名>-480.webp` 與 `-1600.webp`),
+  由 GitHub Action(`.github/workflows/images.yml` → `tools/process_images.py`)在
+  push 後自動生成;同一支腳本也會把 uploads 的原圖壓到長邊 ≤2000px
+  (藝術家可直接傳手機原圖)。`js/data.js` 的 `imgURL()` 依寬度取 480/1600 檔;
+  本機直接回原始路徑;`<img>` 掛了 onerror 保險,縮圖缺檔自動退回原圖。
+  (2026-07 起不再用 Netlify Image CDN 即時轉換 —— credits 計費大宗,
+  且預產縮圖讓網站不依賴任何主機的影像服務。)
 - **影片**直出檔案(不經 CDN),靠 `preload="metadata"` + 同時只播一支省頻寬。
   上傳規範:單支 ≤30MB、約 30–60 秒(CMS 欄位有 hint,手冊有教學)。
   GitHub 單檔硬限 100MB。若影片累積過多 → 擴充點:`js/kits.js` 可加
