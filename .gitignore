@@ -4,3 +4,10 @@ desktop.ini
 .DS_Store
 
 # 沒有 node_modules —— 本專案刻意零依賴、零建置。
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
